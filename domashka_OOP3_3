@@ -1,0 +1,137 @@
+class MyInt:
+  def __init__(self, val):
+    self.__val = val
+
+
+  def __str__(self):
+    return str(self.__val)
+
+
+  @classmethod
+  def __check_data(cls, other):
+    if not isinstance(other, (str, int, MyInt)):
+      raise TypeError("Должен быть str или MyInt")
+    return int(other) if isinstance(other, (str, int)) else other.val
+
+
+  def __repr__(self):
+    return f'{self.__class__} : {self.__val}'
+
+
+  def __add__(self, other):
+    if isinstance(other, str):
+      other = int(other)
+    return MyInt(self.__val + other)  
+
+
+  def __radd__(self, other):
+    if isinstance(other, str):
+      other = int(other)
+    return MyInt(self.__val + other) 
+
+
+  def __iadd__(self, other):
+    if isinstance(other, str):
+      other = int(other)
+    self.__val = self.__val + other
+    return self
+
+
+  def __sub__(self, other):
+    if isinstance(other, str):
+      other = int(other)
+    return MyInt(self.__val - other)
+
+
+  def __rsub__(self, other):
+     if isinstance(other, str):
+       other = int(other)
+     return MyInt(self.__val - other)
+
+
+  def __isub__(self, other):
+    if isinstance(other, str):
+      other = int(other)
+    self.__val = self.__val - other
+    return self
+
+
+  def __mul__(self, other):
+    if isinstance(other, str):
+      other = int(other)
+    return MyInt(self.__val * other)
+
+
+  def __rmul__(self, other):
+    if isinstance(other, str):
+      other = int(other)
+    return MyInt(self.__val * other) 
+
+
+  def __imul__(self, other):
+    if isinstance(other, str):
+      other = int(other)
+    self.__val = self.__val * other
+    return self
+
+
+  def __truediv__(self, other):
+    if isinstance(other, str):
+      other = int(other)
+    return MyInt(self.__val / other) 
+
+
+  def __rtruediv__(self, other):
+    if isinstance(other, str):
+      other = int(other)
+    return MyInt(self.__val / other)
+
+
+  def __itruediv__(self, other):
+    if isinstance(other, str):
+      other = int(other)
+    self.__val = self.__val / other
+    return self
+
+
+  def __eq__(self, other):
+    oth = self.__check_data(other)
+    return self.__val == oth
+
+
+  def __lt__(self, other):
+    oth = self.__check_data(other)
+    return self.__val < oth
+
+
+  def __gt__(self, other):
+    oth = self.__check_data(other)
+    return self.__val > oth
+
+
+  def __le__(self, other):
+    oth = self.__check_data(other)
+    return self.__val <= oth
+
+
+  def __ge__(self, other):
+    oth = self.__check_data(other)
+    return self.__val >= oth
+
+a = MyInt(5)
+#a = a + 5
+#print(a)
+#10
+#a = a - 2 - 3
+a
+#<class '__main__.MyInt'>: 5
+#a = a * '5'
+#print(a)
+#25
+#a = a / 10
+#print(a)
+#2.5
+#print(a)
+#a == '5'
+#a < '3'
+a >= '3'
